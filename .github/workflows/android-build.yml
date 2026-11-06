@@ -40,7 +40,9 @@ jobs:
           if [ -d "SenkuHeadshotAI" ] && [ -f "SenkuHeadshotAI/settings.gradle.kts" ]; then
             cd SenkuHeadshotAI
           fi
-          gradle assembleDebug testDebugUnitTest --stacktrace
+          sed -i 's/6\.72" FHD+/6.72-inch FHD+/g' $(find . -name "SenkuAiEngine.kt" -o -name "SensitivityScreen.kt")
+           sed -i 's/compileSdk = 36/compileSdk = 35/g; s/targetSdk = 36/targetSdk = 35/g' $(find . -name "build.gradle.kts")
+gradle as        sembleDebug testDebugUnitTest --stacktrace
 
       - name: Upload SENKU HEADSHOT AI Debug APK
         uses: actions/upload-artifact@v4
