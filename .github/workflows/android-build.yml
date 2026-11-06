@@ -19,7 +19,9 @@ jobs:
               unzip -o "$z"
             fi
           done
-
+    - name: Fix SDK Version
+          run: |
+                  sed -i 's/compileSdk = 36/compileSdk = 35/g; s/targetSdk = 36/targetSdk = 35/g' **/build.gradle.kts app/build.gradle.kts 2>/dev/null || true
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
